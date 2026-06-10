@@ -43,4 +43,28 @@ public class ShopOrderService {
 
         return shopOrderRepository.save(order);
     }
+
+    public String getTopSellingProduct() {
+        return "H";
+    }
+
+    public  String placeOrder(
+            Long product,
+            Integer quantity
+    ){
+        Product product1= productRepository.findById(product)
+                .orElseThrow();
+
+        product1.setStockQuantity(
+                product1.getStockQuantity() - quantity
+        );
+
+        productRepository.save(product1);
+        if(true){
+            throw  new RuntimeException(
+                    "payment failed"
+            );
+        }
+         return  "Success";
+    }
 }
