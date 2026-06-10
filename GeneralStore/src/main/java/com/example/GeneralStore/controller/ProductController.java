@@ -4,7 +4,9 @@ import com.example.GeneralStore.dto.ProductRequestDto;
 import com.example.GeneralStore.entity.Product;
 import com.example.GeneralStore.service.ProductService;
 import com.example.GeneralStore.service.ShopOrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,7 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(
-            @RequestBody ProductRequestDto dto) {
+           @Valid @RequestBody ProductRequestDto dto) {
 
         return productService.createProduct(dto);
     }
@@ -107,4 +109,5 @@ public class ProductController {
                 quantity
         );
     }
+
 }
